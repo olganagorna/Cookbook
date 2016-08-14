@@ -1,0 +1,64 @@
+<div ng-controller="RecipesController as RecipesCtrl">
+	<div class="recipes">
+		<h2 class="heading">Recipes</h2>
+		<button ng-click="addNew=true">Add new recipe</button>
+		<form ng-submit="addRecipe()" class="recipes_form" ng-show="addNew">
+			<input type="text" ng-model="model.title" placeholder="Title of recipe" required/>
+			<div ng-repeat="item in model.ingredients" class="ingredient">
+				<input type="text" placeholder="Ingredient" ng-model="item.title" required/>
+				<input type="text" placeholder="Quantity" ng-model="item.quantity" required/>
+			</div>
+			<button ng-click="addIngredient()" class="add_ingredient">Add ingredient</button>
+			<textarea ng-model="model.description" placeholder="Describe your recipe" required></textarea>
+			<input type="submit" value="Add new" ng-click="addNew=false"/>
+		</form>
+		<ul>
+			<li ng-repeat="recipe in recipes track by $index" ng-click="select($index)"  ng-class="{active: $index == active}" ng-dblclick="toggleEditMode()">
+				<span ng-repeat="version in recipe.versions track by $index">
+					<a href=""  ng-init="RecipesCtrl.tab = 0" ng-click="RecipesCtrl.tab = $index" ng-show="$last">{{version.title}}
+						<span class="com_number">{{recipe.versions[0].createTime | date:
+						"MMM d, y 'at' h:mm:ss"}}</span>
+					</a>
+				</span>
+				<input type="button" value="Delete" ng-click="removerecipe($index)">
+			</li>
+		</ul>
+	</div>
+	
+	<div class="ingredients" ng-show="recipes.length > 0">
+		<ul>
+			<li ng-repeat="recipe in recipes track by $index" ng-click="select($index)" ng-dblclick="toggleEditMode()">
+				<div ng-repeat="version in recipe.versions track by $index">
+					<a href=""  ng-init="RecipesCtrl.tab = 0" ng-click="RecipesCtrl.tab = $index">{{version.title}} version {{version.version}}
+						<span class="com_number">{{recipe.versions[0].createTime | date:
+						"MMM d, y 'at' h:mm:ss"}}</span>
+					</a>
+				</div>
+				<input type="button" value="Delete" ng-click="removerecipe($index)">
+			</li>
+		</ul>
+
+		<div ng-repeat="recipe in recipes track by $index" ng-show="RecipesCtrl.tab === $index" class="recipe_detail">
+			<h2 class="heading">Details {{recipe.versions[0].title}}</h2>
+			<input class="edit" type="text" ng-model="model.title"
+			ng-keyup="editOnEnter(recipe)"/>
+			<span class="com_number">{{recipe.versions[0].createTime | date:
+			"MMM d, y 'at' h:mm:ss"}}</span>
+			<div ng-repeat="item in recipe.versions[0].ingredients track by $index" class="ingredient">
+				<span>{{item.title}}<span/>
+				<span>{{item.quantity}}<span/>
+			</div>
+
+			<div ng-repeat="item in model.ingredients" class="ingredient">
+				<input class="edit" type="text" ng-model="item.title"
+				ng-keyup="editOnEnter(recipe)"/>
+				<input class="edit" type="text" ng-model="item.quantity"
+				ng-keyup="editOnEnter(recipe)"/>
+			</div>
+			<p>{{recipe.versions[0].description}}</p>
+			<input class="edit" type="text" ng-model="model.description"
+			ng-keyup="editOnEnter(todo)"/>
+			<button ng-click="toggleEditMode($index)">Edit</button>
+		</div>
+	</div>
+</div>

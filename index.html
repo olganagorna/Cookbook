@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe Application</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="modules/app_module.js"></script>
+    <script src="modules/routes.js"></script>
+    <script src="controllers/recipes_controller.js"></script>
+    <script src="directives/ngenter_directive.js"></script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <a href="#">Main</a>
+      <nav>
+        <a href="#/items">Overview</a>
+      </nav>
+    </div>
+    <div class="wrapper" ng-view></div>
+
+
+  </body>
+</html>

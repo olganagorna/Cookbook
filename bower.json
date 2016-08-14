@@ -1,0 +1,17 @@
+{
+  "name": "Recipes for binary studio",
+  "description": "Test task",
+  "main": "",
+  "authors": [
+    "Olga Nagorna"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/olganagorna/recipes",
+  "ignore": [
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-route": "1.5.8"
+  }
+}
