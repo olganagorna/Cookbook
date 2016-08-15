@@ -56,7 +56,7 @@ nav a{
 	width: 270px;
 	background: #2b2f3e;
 }
-.recipes, .ingredients{
+.recipes, .recipe_versions{
 	position: relative;
 	float: left;
 	box-shadow: 2px 2px 2px #adadad;
@@ -96,7 +96,7 @@ nav a{
 	float: right;
 	border: 1px solid #ff305a;
 	background: transparent;
-	padding: 0 26px;
+	padding: 0 12px;
 	color: #ff305a;
 	height: 34px;
 	line-height: 34px;
@@ -120,7 +120,7 @@ nav a{
 	display: inline-block;
 	width: calc(100% - 100px);
 }
-.com_number{
+.date_time{
 	background: #27ccc0;
 	border-radius: 10px;
 	padding: 0 10px;
@@ -152,15 +152,15 @@ nav a{
 	width: 5px;
 	height: 100%;
 }
-.ingredients{
+.recipe_versions{
 	padding: 0px 20px 15px 20px;
 	width: calc(48% - 100px);
 	margin: 20px 0;
 }
-.ingredients .heading{
+.recipe_versions .heading{
 	margin-bottom: 17px;
 }
-.ingredients p{
+.recipe_versions p{
 	font-size: 12px;
 	color: #666;
 	display: inline-block;
