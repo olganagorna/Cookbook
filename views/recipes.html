@@ -2,9 +2,9 @@
 	<div class="recipes">
 		<h2 class="heading">Recipes</h2>
 		<button ng-click="addNew=true">Add new recipe</button>
-		<form ng-submit="addRecipe()" class="recipes_form" ng-show="addNew">
-			<input type="text" ng-model="model.title" placeholder="Title of recipe" required/>
-			<textarea ng-model="model.description" placeholder="Describe your recipe" required></textarea>
+		<form ng-submit="addRecipe(index)" class="recipes_form" ng-show="addNew">
+			<input type="text" ng-model="model[index].title" placeholder="Title of recipe" required/>
+			<textarea ng-model="model[index].description" placeholder="Describe your recipe" required></textarea>
 			<input type="submit" value="Add new" ng-click="addNew=false"/>
 			<input type="button" value="Cancel" ng-click="addNew=false"/>
 		</form>
@@ -26,18 +26,18 @@
 		<h2 class="heading">Versions of recipe</h2>
 		<ul>
 			<li ng-repeat="recipe in recipes track by $index" ng-show="RecipesCtrl.tab === $index" ng-click="select($index)">
-				<div ng-repeat="version in recipe.versions">
+				<div ng-repeat="version in recipe.versions track by $index">
 					<a href="" ng-click="showMore=!showMore">{{version.title}}
 						<span class="date_time" ng-show="showMore">{{version.createTime | date:
 						"MMM d, y 'at' h:mm:ss"}}</span>
 						<p ng-show="showMore">{{version.description}}</p>
 					</a>
 
-					<input type="button" value="Edit" ng-click="editLast=true" ng-show="$last">
+					<input type="button" value="Edit" ng-click="editLast=true; edit($parent.$index)" ng-show="$last">
 					<form ng-submit="editRecipe($parent.$index)" class="recipes_form" ng-show="editLast">
-						<input type="text" ng-model="edit_model.title" class="title" required/>
-						<span>{{version.title}}</span>
-						<textarea ng-model="edit_model.description" value={{version.description}} required></textarea>
+						<input type="text" ng-model="model[$parent.$index].edit_model[0].title" class="title" required/>
+						<span>{{model[$parent.$index].edit_model[0]}}<span>
+						<textarea ng-model="model[$parent.$index].edit_model[0].description" value={{version.description}} required></textarea>
 						<input type="submit" value="Submit" ng-click="editLast=false"/>
 						<input type="button" value="Cancel" ng-click="editLast=false"/>
 					</form>
